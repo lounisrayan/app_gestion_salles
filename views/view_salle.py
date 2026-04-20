@@ -18,6 +18,10 @@ def menu():
 
         if choix == "1":
             code = input("Code : ")
+
+            if code == "":
+                print(" Code obligatoire")
+                continue
             libelle = input("Libellé : ")
             type_salle = input("Type : ")
             capacite = int(input("Capacité : "))
