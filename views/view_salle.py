@@ -22,6 +22,10 @@ def menu():
             type_salle = input("Type : ")
             capacite = int(input("Capacité : "))
 
+            if capacite <= 0:
+                print(" Capacité invalide")
+                continue
+
             from models.salle import Salle
             s = Salle(code, libelle, type_salle, capacite)
 
