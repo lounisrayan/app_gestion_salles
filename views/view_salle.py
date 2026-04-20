@@ -10,7 +10,7 @@ def menu():
         print("\n===== MENU SALLE =====")
         print("1. Ajouter une salle")
         print("2. Afficher toutes les salles")
-        print("3. Quitter")
+        print("3. Quitter le programme")
         print("4. Supprimer salle")
         print("5. Modifier salle")
 
