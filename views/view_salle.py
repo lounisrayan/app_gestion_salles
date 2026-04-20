@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from services.services_salle import ServiceSalle
 from models.salle import Salle
+from tkinter import ttk
 
 
 class ViewSalle(ctk.CTk):
@@ -13,7 +14,7 @@ class ViewSalle(ctk.CTk):
 
         self.service = ServiceSalle()
 
-        # Champs de saisie
+        # Champs
         self.entry_code = ctk.CTkEntry(self, placeholder_text="Code")
         self.entry_code.pack(pady=5)
 
@@ -36,8 +37,32 @@ class ViewSalle(ctk.CTk):
         btn_delete = ctk.CTkButton(self, text="Supprimer", command=self.supprimer_salle)
         btn_delete.pack(pady=5)
 
-        btn_show = ctk.CTkButton(self, text="Afficher", command=self.afficher_salles)
+        btn_show = ctk.CTkButton(self, text="Afficher", command=self.charger_salles)
         btn_show.pack(pady=5)
+
+        # Tableau
+        self.tree = ttk.Treeview(self, columns=("code", "libelle", "type", "capacite"), show="headings")
+
+        self.tree.heading("code", text="Code")
+        self.tree.heading("libelle", text="Libellé")
+        self.tree.heading("type", text="Type")
+        self.tree.heading("capacite", text="Capacité")
+
+        self.tree.pack(pady=10)
+
+        # Charger au démarrage
+        self.charger_salles()
+
+    # 🔥 Fonction principale (AFFICHAGE TABLEAU)
+    def charger_salles(self):
+        # vider tableau
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        salles = self.service.get_salles()
+
+        for s in salles:
+            self.tree.insert("", "end", values=(s.code, s.libelle, s.type, s.capacite))
 
     # Ajouter
     def ajouter_salle(self):
@@ -48,6 +73,8 @@ class ViewSalle(ctk.CTk):
 
         s = Salle(code, libelle, type_salle, capacite)
         self.service.ajouter_salle(s)
+
+        self.charger_salles()  # 🔥 refresh tableau
 
         print("Salle ajoutée ✔")
 
@@ -61,6 +88,8 @@ class ViewSalle(ctk.CTk):
         s = Salle(code, libelle, type_salle, capacite)
         self.service.modifier_salle(s)
 
+        self.charger_salles()  # 🔥 refresh
+
         print("Salle modifiée ✔")
 
     # Supprimer
@@ -68,11 +97,6 @@ class ViewSalle(ctk.CTk):
         code = self.entry_code.get()
         self.service.supprimer_salle(code)
 
+        self.charger_salles()  # 🔥 refresh
+
         print("Salle supprimée ✔")
-
-    # Afficher
-    def afficher_salles(self):
-        salles = self.service.get_salles()
-
-        for s in salles:
-            s.afficher_infos()

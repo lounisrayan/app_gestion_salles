@@ -18,6 +18,7 @@ class DataSalle:
 
         return connection
 
+
     def insert_salle(self, salle):
         conn = self.get_connection()
         cursor = conn.cursor()
@@ -30,6 +31,7 @@ class DataSalle:
 
         cursor.close()
         conn.close()
+
 
     def update_salle(self, salle):
         conn = self.get_connection()
@@ -44,6 +46,7 @@ class DataSalle:
         cursor.close()
         conn.close()
 
+
     def delete_salle(self, code):
         conn = self.get_connection()
         cursor = conn.cursor()
@@ -56,6 +59,7 @@ class DataSalle:
 
         cursor.close()
         conn.close()
+
 
     def get_salle(self, code):
         conn = self.get_connection()
@@ -76,3 +80,23 @@ class DataSalle:
         else:
             return None
 
+
+    def get_salles(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+
+        query = "SELECT * FROM salle"
+        cursor.execute(query)
+
+        results = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        from models.salle import Salle
+        salles = []
+
+        for r in results:
+            salles.append(Salle(r[0], r[1], r[2], r[3]))
+
+        return salles
