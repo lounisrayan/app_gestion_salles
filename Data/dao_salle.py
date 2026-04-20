@@ -1,3 +1,4 @@
+# Couche d'accès aux données des salles
 import mysql.connector
 import json
 
