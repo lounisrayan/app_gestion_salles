@@ -1,3 +1,4 @@
-from views.view_salle import menu
+from views.view_salle import ViewSalle
 
-menu()
+app = ViewSalle()
+app.mainloop()
