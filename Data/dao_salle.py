@@ -16,3 +16,16 @@ class DataSalle:
         )
 
         return connection
+
+    def insert_salle(self, salle):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+
+        query = "INSERT INTO salle (code, libelle, type, capacite) VALUES (%s, %s, %s, %s)"
+        values = (salle.code, salle.libelle, salle.type, salle.capacite)
+
+        cursor.execute(query, values)
+        conn.commit()
+
+        cursor.close()
+        conn.close()
