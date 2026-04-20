@@ -9,6 +9,7 @@ def menu():
         print("2. Afficher toutes les salles")
         print("3. Quitter")
         print("4. Supprimer salle")
+        print("5. Modifier salle")
 
         choix = input("Choix : ")
 
@@ -22,7 +23,7 @@ def menu():
             s = Salle(code, libelle, type_salle, capacite)
 
             service.ajouter_salle(s)
-            print("Salle ajoutée ✔️")
+            print("Salle ajoutée ✔")
 
         elif choix == "2":
             salles = service.get_salles()
@@ -31,7 +32,18 @@ def menu():
         elif choix == "4":
             code = input("Code à supprimer : ")
             service.supprimer_salle(code)
-            print("Salle supprimée ✔️")
+            print("Salle supprimée ✔")
+        elif choix == "5":
+            code = input("Code : ")
+            libelle = input("Nouveau libellé : ")
+            type_salle = input("Nouveau type : ")
+            capacite = int(input("Nouvelle capacité : "))
+
+            from models.salle import Salle
+            s = Salle(code, libelle, type_salle, capacite)
+
+            service.modifier_salle(s)
+            print("Salle modifiée ✔")
 
 
         elif choix == "3":
