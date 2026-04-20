@@ -48,6 +48,7 @@ def menu():
 
 
         elif choix == "3":
+            print("Au revoir ")
             break
 
         else:
