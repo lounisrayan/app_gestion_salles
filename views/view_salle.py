@@ -8,6 +8,7 @@ def menu():
         print("1. Ajouter salle")
         print("2. Afficher toutes les salles")
         print("3. Quitter")
+        print("4. Supprimer salle")
 
         choix = input("Choix : ")
 
@@ -27,6 +28,11 @@ def menu():
             salles = service.get_salles()
             for s in salles:
                 s.afficher_infos()
+        elif choix == "4":
+            code = input("Code à supprimer : ")
+            service.supprimer_salle(code)
+            print("Salle supprimée ✔️")
+
 
         elif choix == "3":
             break
