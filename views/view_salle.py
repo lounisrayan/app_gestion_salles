@@ -8,7 +8,7 @@ def menu():
         print()
         print("==== GESTION DES SALLES ====")
         print("\n===== MENU SALLE =====")
-        print("1. Ajouter salle")
+        print("1. Ajouter une salle")
         print("2. Afficher toutes les salles")
         print("3. Quitter")
         print("4. Supprimer salle")
