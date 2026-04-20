@@ -40,6 +40,7 @@ def menu():
             salles = service.get_salles()
             for s in salles:
                 s.afficher_infos()
+            print("Nombre total de salles :", len(salles))
         elif choix == "4":
             code = input("Code à supprimer : ")
             service.supprimer_salle(code)
