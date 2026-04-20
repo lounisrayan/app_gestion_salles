@@ -1,3 +1,4 @@
+# Interface utilisateur gestion des salles
 from services.services_salle import ServiceSalle
 
 service = ServiceSalle()
