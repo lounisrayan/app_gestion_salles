@@ -5,7 +5,7 @@ service = ServiceSalle()
 
 def menu():
     while True:
-        print("===== GESTION DES SALLES =====")
+        print("==== GESTION DES SALLES ====")
         print("\n===== MENU SALLE =====")
         print("1. Ajouter salle")
         print("2. Afficher toutes les salles")
